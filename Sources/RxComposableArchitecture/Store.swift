@@ -65,13 +65,15 @@ public final class Store<State, Action> {
     )
 
     self.stateRelay
+          .distinctUntilChanged({ old, new in
+              isEqual(old, new)
+          })
       .subscribe(onNext: { [weak localStore] newValue in
         if let newState = toLocalState(newValue) {
           localStore?.state = newState
         }
       }).disposed(by: localStore.disposeBag)
     return localStore
-
   }
 
   /// Scopes the store to one that exposes local state.
@@ -442,4 +444,12 @@ extension Store {
     
     return delayedStore
   }
+}
+
+extension Equatable {
+  func equals(_ any: some Any) -> Bool { self == any as? Self }
+}
+
+func isEqual(_ lhs: some Any, _ rhs: some Any) -> Bool {
+  (lhs as? any Equatable)?.equals(rhs) ?? false
 }

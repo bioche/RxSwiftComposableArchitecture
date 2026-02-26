@@ -169,20 +169,20 @@ final class StoreTests: XCTestCase {
     store.send(())
 
     XCTAssertEqual(numCalls1, 4)
-    XCTAssertEqual(numCalls2, 5)
-    XCTAssertEqual(numCalls3, 6)
+    XCTAssertEqual(numCalls2, 4)
+    XCTAssertEqual(numCalls3, 4)
 
     store.send(())
 
     XCTAssertEqual(numCalls1, 6)
-    XCTAssertEqual(numCalls2, 8)
-    XCTAssertEqual(numCalls3, 10)
+    XCTAssertEqual(numCalls2, 6)
+    XCTAssertEqual(numCalls3, 6)
 
     store.send(())
 
     XCTAssertEqual(numCalls1, 8)
-    XCTAssertEqual(numCalls2, 11)
-    XCTAssertEqual(numCalls3, 14)
+    XCTAssertEqual(numCalls2, 8)
+    XCTAssertEqual(numCalls3, 8)
   }
 
   func testSynchronousEffectsSentAfterSinking() {
